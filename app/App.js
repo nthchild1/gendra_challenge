@@ -1,13 +1,16 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import DrawerNavigation from './routes/AppNavigator';
-import {Alert} from 'react-native';
+import {Provider} from 'react-redux';
+import store from './store/store';
 
 const App: () => React$Node = () => {
   return (
-    <SafeAreaProvider>
-      <DrawerNavigation />
-    </SafeAreaProvider>
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <DrawerNavigation />
+      </SafeAreaProvider>
+    </Provider>
   );
 };
 
