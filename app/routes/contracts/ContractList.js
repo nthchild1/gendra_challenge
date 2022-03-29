@@ -20,7 +20,6 @@ export function ContractList({navigation}) {
     if (searchString === '') {
       setFilteredTenders(contracts);
     } else {
-      console.log('else');
       setFilteredTenders(() => {
         return contracts.filter(({tender}) =>
           tender.title.toLowerCase().includes(searchString.toLowerCase()),
