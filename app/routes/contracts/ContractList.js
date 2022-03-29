@@ -10,7 +10,7 @@ import ContractCard from '../../../src/components/ContractCard/ContractCard';
 export function ContractList({navigation}) {
   const dispatch = useDispatch();
   const {entities: contracts} = useSelector(state => state.contracts);
-  const [page, setPage] = useState(10);
+  const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
 
   const [filteredTenders, setFilteredTenders] = useState(contracts);
@@ -37,10 +37,10 @@ export function ContractList({navigation}) {
   }, [contracts]);
 
   useEffect(() => {
-    filterTenders();
+    if (searchString !== '') {
+      filterTenders();
+    }
   }, [searchString]);
-
-  console.log(filteredTenders);
 
   return (
     <View
