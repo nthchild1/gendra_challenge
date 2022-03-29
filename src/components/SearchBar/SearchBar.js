@@ -5,13 +5,13 @@ function SearchBar({onChangeText, onSubmit}) {
   return (
     <View
       style={{
-        backgroundColor: '#726464',
+        backgroundColor: '#bbafaf',
         flexDirection: 'row',
         alignItems: 'center',
       }}>
       <TextInput
         style={{flex: 1, padding: 5}}
-        placeholder={'Search pokemon'}
+        placeholder={'Buscar licitaciones'}
         {...{onChangeText}}
       />
       <TouchableOpacity onPress={onSubmit}>

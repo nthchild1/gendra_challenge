@@ -10,8 +10,28 @@ export default function AppNavigator() {
   return (
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="ContractList">
-        <Drawer.Screen name="ContractList" component={ContractList} />
-        <Drawer.Screen name="ContractDetails" component={ContractDetails} />
+        <Drawer.Screen
+          options={{
+            title: 'Lista de Licitaciones',
+            headerStyle: {backgroundColor: '#285C4D'},
+            headerTitleStyle: {
+              color: 'white',
+            },
+          }}
+          name="ContractList"
+          component={ContractList}
+        />
+        <Drawer.Screen
+          name="ContractDetails"
+          options={{
+            title: 'Detalles de Licitaciones',
+            headerStyle: {backgroundColor: '#285C4D'},
+            headerTitleStyle: {
+              color: 'white',
+            },
+          }}
+          component={ContractDetails}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );

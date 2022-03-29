@@ -13,7 +13,7 @@ import {
 const initialState = {
   entities: [],
   page: 1,
-  pageSize: 5,
+  pageSize: 20,
 };
 
 export default createSlice({

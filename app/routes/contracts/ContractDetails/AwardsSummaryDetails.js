@@ -10,7 +10,7 @@ function AwardsSummaryDetails({awards}) {
   return (
     <SummaryDetails
       Header={() => (
-        <Header style={{width: '100%', marginVertical: 5}}>
+        <Header style={{margin: 5, flex: 1}}>
           <Text style={{color: 'white'}}>Ganadores</Text>
         </Header>
       )}>

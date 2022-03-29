@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   TouchableOpacity,
   Image,
 } from 'react-native';
@@ -41,7 +40,7 @@ const PaginationFlatList = ({displayedPages, page}) => {
     } else if (page === displayedPagesData[0] - 1) {
       setDisplayedPagesData(displayedPagesData.map(value => value - 1));
     }
-  }, [displayedPagesData, page]);
+  }, [page]);
 
   const dispatch = useDispatch();
 
@@ -54,17 +53,24 @@ const PaginationFlatList = ({displayedPages, page}) => {
           <TouchableOpacity
             style={{
               ...styles.item,
-              backgroundColor: page === item ? 'red' : 'transparent',
-              borderRadius: 100,
+              backgroundColor: page === item ? '#528de5' : 'transparent',
+              borderRadius: 5,
+              padding: 10,
+              margin: 10,
             }}
             onPress={() => dispatch(setPage(item))}>
-            <Text>{item}</Text>
+            <Text
+              style={{
+                color: page === item ? 'white' : 'black',
+                fontSize: 15,
+              }}>
+              {item}
+            </Text>
           </TouchableOpacity>
         );
       }}
       contentContainerStyle={{
         flex: 1,
-        backgroundColor: 'pink',
         justifyContent: 'center',
       }}
     />
@@ -92,6 +98,8 @@ const Pagination = ({totalPages, displayedPages}) => {
         }}
         style={{
           justifyContent: 'center',
+          alignItems: 'center',
+          width: 50,
         }}>
         <Image
           style={{width: 20, height: 20}}
@@ -107,6 +115,8 @@ const Pagination = ({totalPages, displayedPages}) => {
         }}
         style={{
           justifyContent: 'center',
+          alignItems: 'center',
+          width: 50,
         }}>
         <Image
           style={{width: 20, height: 20}}

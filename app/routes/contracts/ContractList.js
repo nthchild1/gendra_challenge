@@ -13,9 +13,35 @@ export function ContractList({navigation}) {
   const [page, setPage] = useState(10);
   const [pageSize, setPageSize] = useState(10);
 
+  const [filteredTenders, setFilteredTenders] = useState(contracts);
+  const [searchString, setSearchString] = useState('');
+
+  const filterTenders = () => {
+    if (searchString === '') {
+      setFilteredTenders(contracts);
+    } else {
+      console.log('else');
+      setFilteredTenders(() => {
+        return contracts.filter(({tender}) =>
+          tender.title.toLowerCase().includes(searchString.toLowerCase()),
+        );
+      });
+    }
+  };
+
   useEffect(() => {
     dispatch(fetchContracts({page, pageSize}));
   }, []);
+
+  useEffect(() => {
+    setFilteredTenders(contracts);
+  }, [contracts]);
+
+  useEffect(() => {
+    filterTenders();
+  }, [searchString]);
+
+  console.log(filteredTenders);
 
   return (
     <View
@@ -25,10 +51,13 @@ export function ContractList({navigation}) {
         justifyContent: 'space-between',
         height: '100%',
       }}>
-      <SearchBar />
+      <SearchBar
+        onSubmit={() => filterTenders()}
+        onChangeText={text => setSearchString(text)}
+      />
       <FlatList
         style={{width: '100%'}}
-        data={contracts}
+        data={filteredTenders}
         renderItem={({item}) => {
           return (
             <ContractCard

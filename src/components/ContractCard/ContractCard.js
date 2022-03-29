@@ -10,17 +10,27 @@ export default function ContractCard({item, onPress}) {
       style={{
         margin: 20,
         padding: 10,
-        backgroundColor: 'silver',
+        backgroundColor: '#9D2449',
         borderRadius: 5,
       }}>
-      <Paragraph bold>{item.tender.title}</Paragraph>
-      <Text>{item.publisher.name}</Text>
-      <Text>{item.ocid}</Text>
-      <Text>{new Date(item.date).toLocaleDateString()}</Text>
+      <Paragraph numberOfLines={2} bold style={{color: 'white'}}>
+        {item.tender.title}
+      </Paragraph>
+      <Text style={{color: '#ffc8c8'}}>
+        {item.publisher.name.toUpperCase()}
+      </Text>
+      <Text style={{color: 'white'}}>{item.ocid}</Text>
+      <Text style={{color: 'white'}}>
+        {new Date(item.date).toLocaleDateString()}
+      </Text>
       <View style={{display: 'flex', flexDirection: 'row'}}>
-        <Text>{item.parties.length} participantes</Text>
-        <Text>{item.contracts.length} contratos</Text>
-        <Text>{item.awards.length} ganadores</Text>
+        <Text style={{color: '#c0c0c0'}}>
+          {item.parties.length} participantes
+        </Text>
+        <Text style={{color: '#c0c0c0'}}>
+          {item.contracts.length} contratos
+        </Text>
+        <Text style={{color: '#c0c0c0'}}>{item.awards.length} ganadores</Text>
       </View>
     </TouchableOpacity>
   );
