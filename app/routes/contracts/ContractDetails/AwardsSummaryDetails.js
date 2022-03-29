@@ -17,13 +17,17 @@ function AwardsSummaryDetails({awards}) {
       <View style={{padding: normalizePx(15)}}>
         {awards.map(award => {
           return (
-            <View>
+            <View key={award.title}>
               <Paragraph bold>
                 Titulo: <Paragraph bold={false}>{award.title}</Paragraph>
               </Paragraph>
               <Paragraph bold>Nombre(s):</Paragraph>
               {award.suppliers.map(supplier => {
-                return <Paragraph bold={false}>{supplier.name}</Paragraph>;
+                return (
+                  <Paragraph key={supplier.name} bold={false}>
+                    {supplier.name}
+                  </Paragraph>
+                );
               })}
               <Paragraph bold>
                 Cantidad:{' '}

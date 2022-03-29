@@ -16,7 +16,7 @@ function ContractsSummaryDetails({contracts}) {
       )}>
       {contracts.map(contract => {
         return (
-          <View style={{padding: normalizePx(15)}}>
+          <View key={contract.title} style={{padding: normalizePx(15)}}>
             <Paragraph numberOfLines={2} bold ellipsizeMode={'tail'}>
               {contract.title}
             </Paragraph>

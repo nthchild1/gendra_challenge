@@ -1,4 +1,4 @@
-import {createAction, createAsyncThunk, createReducer} from '@reduxjs/toolkit';
+import {createAction, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const ACTION_TYPES = {
@@ -7,10 +7,10 @@ export const ACTION_TYPES = {
   SET_PAGE: 'SET_PAGE',
 };
 
-export const fetchContracts = createAsyncThunk(
-  'contracts/fetchContracts',
+export const fetchTenders = createAsyncThunk(
+  'tenders/fetchTenders',
   async ({page, pageSize}, ThunkAPI) => {
-    const state = ThunkAPI.getState().contracts;
+    const state = ThunkAPI.getState().tenders;
     // This keeps in mind state inmutability. redux toolkit enables the use of this kind of syntax
     state.page = page;
     state.pageSize = pageSize;
@@ -50,8 +50,8 @@ export const previousPage = state => {
 
 export const setPageTo = (state, action) => {
   if (action.payload <= 1) {
-    console.error('Cannot set page lesser than 1');
+    state.page = 1;
+  } else {
+    state.page = action.payload;
   }
-
-  state.page = action.payload;
 };

@@ -1,14 +1,13 @@
-import {createReducer, createSlice} from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 import {
-  ACTION_TYPES,
   advanceToNextPage,
-  fetchContracts,
+  fetchTenders,
   goBackToPreviousPage,
   nextPage,
   previousPage,
   setPage,
   setPageTo,
-} from './contracts.reducers';
+} from './tenders.reducers';
 
 const initialState = {
   entities: [],
@@ -17,12 +16,12 @@ const initialState = {
 };
 
 export default createSlice({
-  name: 'contracts',
+  name: 'tenders',
   initialState,
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(fetchContracts.fulfilled, (state, action) => {
+      .addCase(fetchTenders.fulfilled, (state, action) => {
         // react toolkit makes this immutable so don't worry about it
         state.entities = action.payload;
       })

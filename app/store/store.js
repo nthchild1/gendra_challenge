@@ -1,8 +1,8 @@
 import {configureStore} from '@reduxjs/toolkit';
-import contractsSlice from './contractsSlide/contracts.slice';
+import tendersSlice from './tendersSlide/tenders.slice';
 
 export default configureStore({
   reducer: {
-    contracts: contractsSlice.reducer,
+    tenders: tendersSlice.reducer,
   },
 });

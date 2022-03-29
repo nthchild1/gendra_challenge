@@ -1,32 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
+import {FlatList, Text, View, TouchableOpacity, Image} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   advanceToNextPage,
-  fetchContracts,
+  fetchTenders,
   goBackToPreviousPage,
   setPage,
-} from '../../../app/store/contractsSlide/contracts.reducers';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 22,
-    flexDirection: 'row',
-  },
-  item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
-  },
-});
+} from '../../../app/store/tendersSlide/tenders.reducers';
 
 const PaginationFlatList = ({displayedPages, page}) => {
   //TODO: Move this to hook
@@ -52,7 +32,6 @@ const PaginationFlatList = ({displayedPages, page}) => {
         return (
           <TouchableOpacity
             style={{
-              ...styles.item,
               backgroundColor: page === item ? '#528de5' : 'transparent',
               borderRadius: 5,
               padding: 10,
@@ -78,11 +57,11 @@ const PaginationFlatList = ({displayedPages, page}) => {
 };
 
 const Pagination = ({totalPages, displayedPages}) => {
-  const {page, pageSize} = useSelector(state => state.contracts);
+  const {page, pageSize} = useSelector(state => state.tenders);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchContracts({page, pageSize}));
+    dispatch(fetchTenders({page, pageSize}));
   }, [page]);
 
   return (

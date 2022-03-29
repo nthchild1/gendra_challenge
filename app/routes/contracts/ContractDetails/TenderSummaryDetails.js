@@ -1,10 +1,10 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import StyledText from '../../../../src/components/StyledText/StyledText';
 import {normalizePx} from '../../../../src/utils/utilFunctions';
 
 function TenderSummaryDetails({tender}) {
-  const {Header, Paragraph, Title} = StyledText;
+  const {Paragraph, Title} = StyledText;
 
   return (
     <View style={{padding: normalizePx(30)}}>

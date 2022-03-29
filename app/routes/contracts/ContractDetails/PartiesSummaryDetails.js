@@ -38,7 +38,7 @@ function PartiesSummaryDetails({parties}) {
               <View>
                 {Object.keys(party?.contactPoint ?? {}).map(contact => {
                   return (
-                    <Paragraph>
+                    <Paragraph key={party?.contactPoint[contact]}>
                       <Paragraph bold>{contact}: </Paragraph>
                       {party?.contactPoint[contact]}
                     </Paragraph>
