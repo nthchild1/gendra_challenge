@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const FlatListBasics = ({displayedPages, page}) => {
+const PaginationFlatList = ({displayedPages, page}) => {
   //TODO: Move this to hook
   const [displayedPagesData, setDisplayedPagesData] = useState(
     [...Array(displayedPages + 1).keys()].slice(1),
@@ -40,7 +40,7 @@ const FlatListBasics = ({displayedPages, page}) => {
     } else if (page === displayedPagesData[0] - 1) {
       setDisplayedPagesData(displayedPagesData.map(value => value - 1));
     }
-  }, [page]);
+  }, [displayedPagesData, page]);
 
   const dispatch = useDispatch();
 
@@ -51,14 +51,13 @@ const FlatListBasics = ({displayedPages, page}) => {
       renderItem={({item}) => {
         return (
           <TouchableOpacity
-            style={styles.item}
+            style={{
+              ...styles.item,
+              backgroundColor: page === item ? 'red' : 'transparent',
+              borderRadius: 100,
+            }}
             onPress={() => dispatch(setPage(item))}>
-            <Text
-              style={{
-                backgroundColor: page === item ? 'red' : 'transparent',
-              }}>
-              {item}
-            </Text>
+            <Text>{item}</Text>
           </TouchableOpacity>
         );
       }}
@@ -84,7 +83,6 @@ const Pagination = ({totalPages, displayedPages}) => {
       style={{
         flexDirection: 'row',
         width: '100%',
-        backgroundColor: 'red',
         alignContent: 'space-between',
       }}>
       <Button
@@ -93,7 +91,7 @@ const Pagination = ({totalPages, displayedPages}) => {
           dispatch(goBackToPreviousPage());
         }}
       />
-      <FlatListBasics displayedPages={displayedPages} page={page} />
+      <PaginationFlatList displayedPages={displayedPages} page={page} />
       <Button
         title={'next'}
         onPress={() => {
