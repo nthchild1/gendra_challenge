@@ -10,7 +10,7 @@ function TenderSummaryDetails({tender}) {
   return (
     <SummaryDetails
       Header={() => (
-        <Header style={{width: '100%'}}>
+        <Header style={{width: '100%', marginVertical: 5}}>
           <Text style={{color: 'white'}}>Licitacion</Text>
         </Header>
       )}>

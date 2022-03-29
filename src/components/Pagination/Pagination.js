@@ -6,6 +6,7 @@ import {
   View,
   Button,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {
@@ -85,19 +86,35 @@ const Pagination = ({totalPages, displayedPages}) => {
         width: '100%',
         alignContent: 'space-between',
       }}>
-      <Button
-        title={'prev'}
+      <TouchableOpacity
         onPress={() => {
           dispatch(goBackToPreviousPage());
         }}
-      />
+        style={{
+          justifyContent: 'center',
+        }}>
+        <Image
+          style={{width: 20, height: 20}}
+          source={{
+            uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Chevron_left_font_awesome.svg/1200px-Chevron_left_font_awesome.svg.png',
+          }}
+        />
+      </TouchableOpacity>
       <PaginationFlatList displayedPages={displayedPages} page={page} />
-      <Button
-        title={'next'}
+      <TouchableOpacity
         onPress={() => {
           dispatch(advanceToNextPage());
         }}
-      />
+        style={{
+          justifyContent: 'center',
+        }}>
+        <Image
+          style={{width: 20, height: 20}}
+          source={{
+            uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Chevron_right_font_awesome.svg/1200px-Chevron_right_font_awesome.svg.png',
+          }}
+        />
+      </TouchableOpacity>
     </View>
   );
 };
