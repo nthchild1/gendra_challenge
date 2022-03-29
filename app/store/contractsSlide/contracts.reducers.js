@@ -3,6 +3,8 @@ import axios from 'axios';
 
 export const ACTION_TYPES = {
   INCREMENT_PAGE: 'INCREMENT_PAGE',
+  DECREMENT_PAGE: 'DECREMENT_PAGE',
+  SET_PAGE: 'SET_PAGE',
 };
 
 export const fetchContracts = createAsyncThunk(
@@ -32,6 +34,24 @@ export const fetchContracts = createAsyncThunk(
 
 export const advanceToNextPage = createAction(ACTION_TYPES.INCREMENT_PAGE);
 
+export const goBackToPreviousPage = createAction(ACTION_TYPES.DECREMENT_PAGE);
+
+export const setPage = createAction(ACTION_TYPES.SET_PAGE);
+
 export const nextPage = state => {
   state.page = state.page + 1;
+};
+
+export const previousPage = state => {
+  if (state.page > 1) {
+    state.page = state.page - 1;
+  }
+};
+
+export const setPageTo = (state, action) => {
+  if (action.payload <= 1) {
+    console.error('Cannot set page lesser than 1');
+  }
+
+  state.page = action.payload;
 };

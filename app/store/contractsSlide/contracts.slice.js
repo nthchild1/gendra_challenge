@@ -3,7 +3,11 @@ import {
   ACTION_TYPES,
   advanceToNextPage,
   fetchContracts,
+  goBackToPreviousPage,
   nextPage,
+  previousPage,
+  setPage,
+  setPageTo,
 } from './contracts.reducers';
 
 const initialState = {
@@ -22,6 +26,8 @@ export default createSlice({
         // react toolkit makes this immutable so don't worry about it
         state.entities = action.payload;
       })
-      .addCase(advanceToNextPage, nextPage);
+      .addCase(advanceToNextPage, nextPage)
+      .addCase(goBackToPreviousPage, previousPage)
+      .addCase(setPage, setPageTo);
   },
 });
