@@ -1,5 +1,9 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
+import {createAction, createAsyncThunk, createReducer} from '@reduxjs/toolkit';
 import axios from 'axios';
+
+export const ACTION_TYPES = {
+  INCREMENT_PAGE: 'INCREMENT_PAGE',
+};
 
 export const fetchContracts = createAsyncThunk(
   'contracts/fetchContracts',
@@ -25,3 +29,9 @@ export const fetchContracts = createAsyncThunk(
       });
   },
 );
+
+export const advanceToNextPage = createAction(ACTION_TYPES.INCREMENT_PAGE);
+
+export const nextPage = state => {
+  state.page = state.page + 1;
+};

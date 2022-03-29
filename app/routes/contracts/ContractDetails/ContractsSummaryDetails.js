@@ -1,24 +1,48 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import SummaryDetails from '../../../../src/components/SummaryDetails/SummaryDetails';
+import StyledText from '../../../../src/components/StyledText/StyledText';
+import {normalizePx} from '../../../../src/utils/utilFunctions';
 
 function ContractsSummaryDetails({contracts}) {
+  const {Paragraph, Header} = StyledText;
+
   return (
-    <View>
-      <Text>Contratos</Text>
+    <SummaryDetails
+      Header={() => (
+        <Header style={{width: '100%'}}>
+          <Text style={{color: 'white'}}>Contratos</Text>
+        </Header>
+      )}>
       {contracts.map(contract => {
         return (
-          <View>
-            <Text>{contract.title}</Text>
-            <Text>Estatus: {contract.status}</Text>
-            <Text>Fecha de inicio: {contract.period.startDate}</Text>
-            <Text>Fecha de finalizacion: {contract.period.endDate}</Text>
-            <Text>
-              Cantidad: {contract.value.amount} {contract.value.currency}
-            </Text>
+          <View style={{padding: normalizePx(15)}}>
+            <Paragraph numberOfLines={2} bold ellipsizeMode={'tail'}>
+              {contract.title}
+            </Paragraph>
+            <Paragraph bold>
+              Estatus: <Paragraph bold={false}>{contract.status}</Paragraph>
+            </Paragraph>
+            <Paragraph bold>
+              Fecha de inicio:{' '}
+              <Paragraph bold={false}>
+                {new Date(contract.period.startDate).toLocaleDateString()}
+              </Paragraph>
+            </Paragraph>
+            <Paragraph bold>
+              Fecha de finalizacion:{' '}
+              <Paragraph bold={false}>
+                {new Date(contract.period.endDate).toLocaleDateString()}
+              </Paragraph>
+            </Paragraph>
+            <Paragraph>
+              <Paragraph bold>Cantidad: </Paragraph>$ {contract.value.amount}{' '}
+              {contract.value.currency}
+            </Paragraph>
           </View>
         );
       })}
-    </View>
+    </SummaryDetails>
   );
 }
 

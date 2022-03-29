@@ -1,5 +1,17 @@
-import React from 'react';
-import {FlatList, StyleSheet, Text, View, Button} from 'react-native';
+import React, {useEffect} from 'react';
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TouchableOpacity,
+} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  advanceToNextPage,
+  fetchContracts,
+} from '../../../app/store/contractsSlide/contracts.reducers';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,17 +28,31 @@ const styles = StyleSheet.create({
 
 const FlatListBasics = () => {
   return (
-    <View style={styles.container}>
-      <FlatList
-        horizontal
-        data={[{key: '1'}, {key: '2'}, {key: '3'}, {key: '4'}, {key: '5'}]}
-        renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
-      />
-    </View>
+    <FlatList
+      horizontal
+      data={[{key: '1'}, {key: '2'}, {key: '3'}, {key: '4'}, {key: '5'}]}
+      renderItem={({item}) => (
+        <TouchableOpacity style={styles.item}>
+          <Text> {item.key}</Text>
+        </TouchableOpacity>
+      )}
+      contentContainerStyle={{
+        flex: 1,
+        backgroundColor: 'pink',
+        justifyContent: 'center',
+      }}
+    />
   );
 };
 
-const Pagination = props => {
+const Pagination = ({totalPages, displayedPages}) => {
+  const {page, pageSize} = useSelector(state => state.contracts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContracts({page, pageSize}));
+  }, [page]);
+
   return (
     <View
       style={{
@@ -35,13 +61,16 @@ const Pagination = props => {
         backgroundColor: 'red',
         alignContent: 'space-between',
       }}>
-      <Button title={'next'} />
+      <Button
+        title={'next'}
+        onPress={() => {
+          dispatch(advanceToNextPage());
+        }}
+      />
       <FlatListBasics />
       <Button title={'prev'} />
     </View>
   );
 };
-
-Pagination.propTypes = {};
 
 export default Pagination;

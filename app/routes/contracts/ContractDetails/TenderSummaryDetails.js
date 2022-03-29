@@ -1,19 +1,32 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import SummaryDetails from '../../../../src/components/SummaryDetails/SummaryDetails';
+import StyledText from '../../../../src/components/StyledText/StyledText';
+import {normalizePx} from '../../../../src/utils/utilFunctions';
 
 function TenderSummaryDetails({tender}) {
+  const {Header, Paragraph} = StyledText;
+
   return (
-    <View>
-      <Text>Licitacion</Text>
-      <Text>{tender.title}</Text>
-      <Text>{tender.procuringEntity.name}</Text>
-      <Text>Estatus: {tender.status}</Text>
-      <View>
-        {'numberOfTenderers' in tender ?? (
-          <Text>Numero de licitantes {tender.numberOfTenderers}</Text>
-        )}
+    <SummaryDetails
+      Header={() => (
+        <Header style={{width: '100%'}}>
+          <Text style={{color: 'white'}}>Licitacion</Text>
+        </Header>
+      )}>
+      <View style={{padding: normalizePx(15)}}>
+        <Paragraph bold>{tender.title}</Paragraph>
+        <Paragraph>{tender.procuringEntity.name}</Paragraph>
+        <Paragraph>Estatus: {tender.status}</Paragraph>
+        <View>
+          {'numberOfTenderers' in tender ?? (
+            <Paragraph>
+              Numero de licitantes {tender.numberOfTenderers}
+            </Paragraph>
+          )}
+        </View>
       </View>
-    </View>
+    </SummaryDetails>
   );
 }
 

@@ -24,11 +24,10 @@ export function ContractList({navigation}) {
         alignItems: 'center',
         justifyContent: 'space-between',
         height: '100%',
-        backgroundColor: 'yellow',
       }}>
       <SearchBar />
       <FlatList
-        style={{backgroundColor: 'orange', width: '100%'}}
+        style={{width: '100%'}}
         data={contracts}
         renderItem={({item}) => {
           return (
@@ -39,7 +38,7 @@ export function ContractList({navigation}) {
           );
         }}
       />
-      <Pagination />
+      <Pagination displayedPages={5} totalPages={contracts.length / 5} />
     </View>
   );
 }

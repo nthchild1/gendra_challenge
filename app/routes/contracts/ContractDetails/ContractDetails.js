@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {ScrollView} from 'react-native';
 import TenderSummaryDetails from './TenderSummaryDetails';
 import AwardsSummaryDetails from './AwardsSummaryDetails';
